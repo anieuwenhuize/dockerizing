@@ -1,8 +1,8 @@
-import { engine } from 'express'
+import express from 'express'
 
 const port = 3001
 
-const app = engine();
+const app = express();
 
 
 app.get("/isalive", (req, res) =>  {
