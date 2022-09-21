@@ -4,10 +4,11 @@ import proxy from 'express-http-proxy'
 const port = 3000
 
 const app = express();
-const serviceOne = proxy('http://localhost:3000/isalive')
+const serviceOne = proxy('http://[::1]:3001/isalive')
 
 // catch proxy requests in middleware
-app.use('/serviceone', serviceOne);
+app.use('/search', proxy('www.google.com'));
+app.use('/serviceone', proxy('http://[::1]:3001/isalive'));
 
 
 // owh routes
