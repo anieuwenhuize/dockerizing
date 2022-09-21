@@ -12,19 +12,17 @@ const engines = [
     'http://www.bing.com',
     'https://duckduckgo.com'];
 
+// catch proxy requests in middleware
+app.use('/search', proxy( () => {
+    
     // round robin
-const getSearchEngine = () => {
-
     numOfReq++;
 
-    var count = engines.length;
-    var selected = numOfReq % count;
+    let count = engines.length;
+    let selected = numOfReq % count;
 
     return engines[ selected ];
-}
-
-// catch proxy requests in middleware
-app.use('/search', proxy(getSearchEngine));
+} ));
 
 // owh routes
 app.get("/isalive", (req, res) =>  {
